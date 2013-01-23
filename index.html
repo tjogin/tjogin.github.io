@@ -14,308 +14,422 @@
     </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <style type="text/css">
-      html{
+    html {
         width: 100%;
         height: 100%;
-        overflow: hidden;
-      }
-      body{
+        overflow: hidden
+        }
+
+    body {
         margin: 0;
         overflow: hidden;
         width: 100%;
         height: 100%;
-        background-color: rgb(245,245,245);
-      }
-        
-      #container{
+        background-color: rgb(245, 245, 245)
+        }
+
+    #container {
         -webkit-perspective: 1000px;
         -webkit-perspective-origin: 50% 50%;
         width: 100%;
         height: 100%;
-        margin: 0 auto;
-      }
-  
-      #stage {
+        margin: 0 auto
+        }
+
+    #stage {
         -webkit-transform-style: preserve-3d;
+        -moz-transform-origin: bottom;
+        -ms-transform-origin: bottom;
+        -o-transform-origin: bottom;
         -webkit-transform-origin: bottom;
+        transform-origin: bottom;
         width: 100%;
         height: 100%;
         position: absolute;
-        bottom: 0;
-      }
+        bottom: 0
+        }
 
-      #cube {
+    #cube {
         -webkit-transform-style: preserve-3d;
-        -webkit-transform: rotateZ(135deg);
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -moz-transform: rotatez(135deg);
+        -ms-transform: rotatez(135deg);
+        -o-transform: rotatez(135deg);
+        -webkit-transform: rotatez(135deg);
+        transform: rotatez(135deg);
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         position: relative;
         margin: auto;
         top: 30%;
         height: 300px;
-        width: 300px;
-      }
+        width: 300px
+        }
 
-      @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-        html, body {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        #cube {
+            top: 200px
+            }
         }
-        #container, #stage {
+    @media only screen and (device-width: 768px) {
+        #cube {
+            top: 150px
+            }
         }
-        #cube{
-          top: 200px;
-        }
-      }
-
-      @media only screen and (device-width: 768px) {
-        #cube{
-          top: 150px;
-        }
-      }
-
-      #cube .face {
+    #cube .face {
         -webkit-transform-style: preserve-3d;
         position: absolute;
         height: 300px;
         width: 300px;
-        background-color: rgb(255,255,255);
-        -webkit-transform: translate3d(0,0,0);
-      }
-  
-      #cube .face.one{
+        background-color: rgb(255, 255, 255);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+        }
+
+    #cube .face.one {
+        -moz-transform-origin: bottom;
+        -ms-transform-origin: bottom;
+        -o-transform-origin: bottom;
         -webkit-transform-origin: bottom;
+        transform-origin: bottom;
         top: -100%;
-        background-image: -webkit-gradient(
-        	linear,
-        	center top,
-        	center bottom,
-        	color-stop(0, rgb(252,252,252)),
-        	color-stop(1, rgb(220,220,220))
-        );
+        background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0, rgb(252, 252, 252)), color-stop(1, rgb(220, 220, 220)))
+        }
 
-      }
-  
-      #cube .face.two{
+    #cube .face.two {
+        -moz-transform-origin: right center;
+        -ms-transform-origin: right center;
+        -o-transform-origin: right center;
         -webkit-transform-origin: right center;
+        transform-origin: right center;
         left: -100%;
-        background-color: rgb(240, 240, 240);
-      }
-  
-      #cube .face.three{
+        background-color: rgb(240, 240, 240)
+        }
+
+    #cube .face.three {
+        -moz-transform-origin: left center;
+        -ms-transform-origin: left center;
+        -o-transform-origin: left center;
         -webkit-transform-origin: left center;
+        transform-origin: left center;
         right: -100%;
-        background-image: -webkit-gradient(
-        	linear,
-        	left bottom,
-        	right top,
-        	color-stop(0.2, rgb(180,180,180)),
-        	color-stop(1, rgb(253,253,253))
-        );
-      }
-  
-      #cube .face.four{
+        background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.2, rgb(180, 180, 180)), color-stop(1, rgb(253, 253, 253)))
+        }
+
+    #cube .face.four {
+        -moz-transform-origin: top;
+        -ms-transform-origin: top;
+        -o-transform-origin: top;
         -webkit-transform-origin: top;
+        transform-origin: top;
         bottom: -100%;
-        background-color: rgb(200, 200, 200);
-      }
-  
-      #cube .face.five{
+        background-color: rgb(200, 200, 200)
+        }
+
+    #cube .face.five {
+        -moz-transform-origin: top;
+        -ms-transform-origin: top;
+        -o-transform-origin: top;
         -webkit-transform-origin: top;
-        background-image: -webkit-gradient(
-        	linear,
-        	left top,
-        	left bottom,
-        	color-stop(0, rgb(190,190,190)),
-        	color-stop(1, rgb(252,252,252))
-        );
-      }
-  
-      #cube .face.six{
-        background-image: -webkit-gradient(
-        	linear,
-        	left top,
-        	right bottom,
-        	color-stop(0.5, rgb(190,190,190)),
-        	color-stop(1, rgb(220,220,220))
-        );
-        box-shadow: 0 0 20px rgb(190,190,190);
-      }
+        transform-origin: top;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgb(190, 190, 190)), color-stop(1, rgb(252, 252, 252)))
+        }
 
-      /*------------------------------------*/
+    #cube .face.six {
+        background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0.5, rgb(190, 190, 190)), color-stop(1, rgb(220, 220, 220)));
+        -moz-box-shadow: 0 0 20px rgb(190, 190, 190);
+        -webkit-box-shadow: 0 0 20px rgb(190, 190, 190);
+        box-shadow: 0 0 20px rgb(190, 190, 190)
+        }
 
-      #stage.flat{
+    /*------------------------------------*/
+    #stage.flat {
+        -moz-transition: -moz-transform 3s ease-in-out;
+        -o-transition: -o-transform 3s ease-in-out;
         -webkit-transition: -webkit-transform 3s ease-in-out;
-      }
-      #cube.flat{
+        transition: transform 3s ease-in-out
+        }
+
+    #cube.flat {
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
         -webkit-transition: all 1s ease-in-out;
-      }
-      #cube.flat .face{
+        transition: all 1s ease-in-out
+        }
+
+    #cube.flat .face {
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
         -webkit-transition: all 2s ease-in-out;
-      }
-      #cube.flat .face.one{
-        box-shadow: 5px 10px 20px rgb(200,200,200);
-      }
-      #cube.flat .face.two{
-        box-shadow: 5px 5px 20px rgb(200,200,200);
-      }
-      #cube.flat .face.three{
-        box-shadow: 5px 5px 20px rgb(190,190,190);
-      }
-      #cube.flat .face.four{
-        box-shadow: 0 0 20px rgb(190,190,190);
-      }
-      #cube.flat .face.five{
-        box-shadow: 0 0 20px rgb(190,190,190);
-        -webkit-transform: rotateX(15deg);
+        transition: all 2s ease-in-out
+        }
+
+    #cube.flat .face.one {
+        -moz-box-shadow: 5px 10px 20px rgb(200, 200, 200);
+        -webkit-box-shadow: 5px 10px 20px rgb(200, 200, 200);
+        box-shadow: 5px 10px 20px rgb(200, 200, 200)
+        }
+
+    #cube.flat .face.two {
+        -moz-box-shadow: 5px 5px 20px rgb(200, 200, 200);
+        -webkit-box-shadow: 5px 5px 20px rgb(200, 200, 200);
+        box-shadow: 5px 5px 20px rgb(200, 200, 200)
+        }
+
+    #cube.flat .face.three {
+        -moz-box-shadow: 5px 5px 20px rgb(190, 190, 190);
+        -webkit-box-shadow: 5px 5px 20px rgb(190, 190, 190);
+        box-shadow: 5px 5px 20px rgb(190, 190, 190)
+        }
+
+    #cube.flat .face.four {
+        -moz-box-shadow: 0 0 20px rgb(190, 190, 190);
+        -webkit-box-shadow: 0 0 20px rgb(190, 190, 190);
+        box-shadow: 0 0 20px rgb(190, 190, 190)
+        }
+
+    #cube.flat .face.five {
+        -moz-box-shadow: 0 0 20px rgb(190, 190, 190);
+        -webkit-box-shadow: 0 0 20px rgb(190, 190, 190);
+        box-shadow: 0 0 20px rgb(190, 190, 190);
+        -moz-transform: rotatex(15deg);
+        -ms-transform: rotatex(15deg);
+        -o-transform: rotatex(15deg);
+        -webkit-transform: rotatex(15deg);
+        transform: rotatex(15deg);
+        -moz-transition: all 4s ease-in-out;
+        -o-transition: all 4s ease-in-out;
         -webkit-transition: all 4s ease-in-out;
-      }
-      #cube.flat .face.six{
-        box-shadow: 0 0 100px rgb(180,180,180);
-      }
-  
-      /*------------------------------------*/
-  
-      #stage.folded{
+        transition: all 4s ease-in-out
+        }
+
+    #cube.flat .face.six {
+        -moz-box-shadow: 0 0 100px rgb(180, 180, 180);
+        -webkit-box-shadow: 0 0 100px rgb(180, 180, 180);
+        box-shadow: 0 0 100px rgb(180, 180, 180)
+        }
+
+    /*------------------------------------*/
+    #stage.folded {
+        -moz-transition: -moz-transform 1s ease-in-out;
+        -o-transition: -o-transform 1s ease-in-out;
         -webkit-transition: -webkit-transform 1s ease-in-out;
-        -webkit-transform: rotateX(45deg);
-      }
-      #cube.folded{
+        transition: transform 1s ease-in-out;
+        -moz-transform: rotatex(45deg);
+        -ms-transform: rotatex(45deg);
+        -o-transform: rotatex(45deg);
+        -webkit-transform: rotatex(45deg);
+        transform: rotatex(45deg)
+        }
+
+    #cube.folded {
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
         -webkit-transition: all 1s ease-in-out;
-      }
-      #cube.folded:hover{
-        cursor: pointer;
-      }
-      #cube.folded .face{
+        transition: all 1s ease-in-out
+        }
+
+    #cube.folded:hover {
+        cursor: pointer
+        }
+
+    #cube.folded .face {
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
         -webkit-transition: all 1s ease-in-out;
-      }
-      #cube.folded .face.one{
-        -webkit-transform: rotateX(-90deg);
-      }
-      #cube.folded .face.two{
-        -webkit-transform: rotateY(90deg);
-      }
-      #cube.folded .face.three{
-        -webkit-transform: rotateY(-90deg);
-      }
-      #cube.folded .face.four{
-        -webkit-transform: rotateX(90deg);
-      }
-      #cube.folded .face.five{
-        -webkit-transform: rotateX(90deg);
+        transition: all 1s ease-in-out
+        }
+
+    #cube.folded .face.one {
+        -moz-transform: rotatex(-90deg);
+        -ms-transform: rotatex(-90deg);
+        -o-transform: rotatex(-90deg);
+        -webkit-transform: rotatex(-90deg);
+        transform: rotatex(-90deg)
+        }
+
+    #cube.folded .face.two {
+        -moz-transform: rotatey(90deg);
+        -ms-transform: rotatey(90deg);
+        -o-transform: rotatey(90deg);
+        -webkit-transform: rotatey(90deg);
+        transform: rotatey(90deg)
+        }
+
+    #cube.folded .face.three {
+        -moz-transform: rotatey(-90deg);
+        -ms-transform: rotatey(-90deg);
+        -o-transform: rotatey(-90deg);
+        -webkit-transform: rotatey(-90deg);
+        transform: rotatey(-90deg)
+        }
+
+    #cube.folded .face.four {
+        -moz-transform: rotatex(90deg);
+        -ms-transform: rotatex(90deg);
+        -o-transform: rotatex(90deg);
+        -webkit-transform: rotatex(90deg);
+        transform: rotatex(90deg)
+        }
+
+    #cube.folded .face.five {
+        -moz-transform: rotatex(90deg);
+        -ms-transform: rotatex(90deg);
+        -o-transform: rotatex(90deg);
+        -webkit-transform: rotatex(90deg);
+        transform: rotatex(90deg);
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
         -webkit-transition: all 2s ease-in-out;
-      }
+        transition: all 2s ease-in-out
+        }
 
-      /*------------------------------------*/
+    /*------------------------------------*/
+    #cube.peek:hover {
+        cursor: pointer
+        }
 
-      #cube.peek{
-      }
-      #cube.peek:hover{
-        cursor: pointer;
-      }
-      #cube.peek .face{
+    #cube.peek .face {
+        -moz-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
         -webkit-transition: all 500ms ease-in-out;
-      }
-      #cube.peek .face.one{
-        -webkit-transform: rotateX(-88deg);
-      }
-      #cube.peek .face.two{
-        -webkit-transform: rotateY(88deg);
-      }
-      #cube.peek .face.three{
-        -webkit-transform: rotateY(-88deg);
-      }
-      #cube.peek .face.four{
-        -webkit-transform: rotateX(88deg);
-      }
-      #cube.peek .face.five{
-        -webkit-transform: rotateX(88deg);
-      }
+        transition: all 500ms ease-in-out
+        }
 
-      /*------------------------------------*/
+    #cube.peek .face.one {
+        -moz-transform: rotatex(-88deg);
+        -ms-transform: rotatex(-88deg);
+        -o-transform: rotatex(-88deg);
+        -webkit-transform: rotatex(-88deg);
+        transform: rotatex(-88deg)
+        }
 
-      .sheet{
-        -webkit-transform: translate3d(0,0,1px) rotateX(180deg) rotateY(180deg);
+    #cube.peek .face.two {
+        -moz-transform: rotatey(88deg);
+        -ms-transform: rotatey(88deg);
+        -o-transform: rotatey(88deg);
+        -webkit-transform: rotatey(88deg);
+        transform: rotatey(88deg)
+        }
+
+    #cube.peek .face.three {
+        -moz-transform: rotatey(-88deg);
+        -ms-transform: rotatey(-88deg);
+        -o-transform: rotatey(-88deg);
+        -webkit-transform: rotatey(-88deg);
+        transform: rotatey(-88deg)
+        }
+
+    #cube.peek .face.four {
+        -moz-transform: rotatex(88deg);
+        -ms-transform: rotatex(88deg);
+        -o-transform: rotatex(88deg);
+        -webkit-transform: rotatex(88deg);
+        transform: rotatex(88deg)
+        }
+
+    #cube.peek .face.five {
+        -moz-transform: rotatex(88deg);
+        -ms-transform: rotatex(88deg);
+        -o-transform: rotatex(88deg);
+        -webkit-transform: rotatex(88deg);
+        transform: rotatex(88deg)
+        }
+
+    /*------------------------------------*/
+    .sheet {
+        -moz-transform: translate3d(0, 0, 1px) rotatex(180deg) rotatey(180deg);
+        -ms-transform: translate3d(0, 0, 1px) rotatex(180deg) rotatey(180deg);
+        -o-transform: translate3d(0, 0, 1px) rotatex(180deg) rotatey(180deg);
+        -webkit-transform: translate3d(0, 0, 1px) rotatex(180deg) rotatey(180deg);
+        transform: translate3d(0, 0, 1px) rotatex(180deg) rotatey(180deg);
         width: 296px;
         height: 296px;
-        border: 2px solid rgb(245,245,245);
-        background-color: rgb(245,245,245);
+        border: 2px solid rgb(245, 245, 245);
+        background-color: rgb(245, 245, 245);
         overflow: hidden;
-        position: relative;
-      }
-      
-      .face.one .sheet{
+        position: relative
+        }
+
+    .face.one .sheet {
+        -moz-transform-origin: center;
+        -ms-transform-origin: center;
+        -o-transform-origin: center;
         -webkit-transform-origin: center;
-        -webkit-transform: translate3d(0,0,1px) rotateZ(-90deg);
-      }
-      
-      .face.six .sheet{
-        background-image: -webkit-gradient(
-        	linear,
-        	center top,
-        	center bottom,
-        	color-stop(0, rgb(225,225,225)),
-        	color-stop(1, rgb(245,245,245))
-        );
-      }
-      
-      
-      .sheet.figure{
+        transform-origin: center;
+        -moz-transform: translate3d(0, 0, 1px) rotatez(-90deg);
+        -ms-transform: translate3d(0, 0, 1px) rotatez(-90deg);
+        -o-transform: translate3d(0, 0, 1px) rotatez(-90deg);
+        -webkit-transform: translate3d(0, 0, 1px) rotatez(-90deg);
+        transform: translate3d(0, 0, 1px) rotatez(-90deg)
+        }
+
+    .face.six .sheet {
+        background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0, rgb(225, 225, 225)), color-stop(1, rgb(245, 245, 245)))
+        }
+
+    .sheet.figure {
         font-family: helvetica;
         text-align: center;
         line-height: 2.5em;
         font-size: 8em;
-        font-weight: bold;
-      }
-      
-      .sheet.gallery img{
+        font-weight: bold
+        }
+
+    .sheet.gallery img {
         float: left;
         width: 148px;
         height: 148px;
-        outline: 2px solid rgb(245,245,245);
-        
-      }
-      .sheet.profile img{
+        outline: 2px solid rgb(245, 245, 245)
+        }
+
+    .sheet.profile img {
         width: 296px;
-        height: 296px;
-      }
-      .sheet.image img{
+        height: 296px
+        }
+
+    .sheet.image img {
         display: block;
-        -webkit-filter: grayscale(100%);
-      }
-      
-      .sheet .info{
+        -webkit-filter: grayscale(100%) brightness(5%)
+        }
+
+    .sheet .info {
         font-family: helvetica, sans-serif;
         padding: 10%;
         width: 80%;
         height: 80%;
         font-weight: 200;
-        color: #333;
-      }
-      
-      .sheet .info.adjust-bottom > *{
+        color: #333
+        }
+
+    .sheet .info.adjust-bottom > * {
         position: absolute;
         bottom: 10%;
-        width: 80%;
-      }
-      
-      h1{
+        width: 80%
+        }
+
+    h1 {
         font-weight: 200;
         font-size: 4em;
-        margin: 0;
-      }
-      p.preamble{
+        margin: 0
+        }
+
+    p.preamble {
         font-weight: 500;
-        margin-top: 0;
-      }
-      
-      ul{
+        margin-top: 0
+        }
+
+    ul {
         margin: 0;
         padding: 0;
-        list-style-position: inside;
-      }
-      li{
+        list-style-position: inside
+        }
+
+    li {
         margin: 0;
-        padding: 0;
-      }
-      
+        padding: 0
+        }      
     </style>
     <script language="javascript">
         
