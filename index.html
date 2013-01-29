@@ -451,9 +451,9 @@
         var animate = function(ms){
           is_animating = true;
           if(animation_timer){
-            clearTimeout(animation_timer);
+            window.clearTimeout(animation_timer);
           }
-          animation_timer = setTimeout(function(){
+          animation_timer = window.setTimeout(function(){
             is_animating = false;
           }, ms);
         }
@@ -521,6 +521,9 @@
           window.setTimeout(function(){
             if(virgin){
               peek();
+              window.setTimeout(function(){
+                close();
+              }, 1000);
             }
           }, 2000);          
         }
